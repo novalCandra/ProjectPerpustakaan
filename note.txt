@@ -1,0 +1,30 @@
+## Tabel Relasi
+1. Siswa
+- id_siswa
+- nama
+- kelas
+- alamat
+
+2. buku
+- id_buku
+- judul
+- pengarang
+- tahun
+- stok
+
+3.Peminjaman
+- id_pinjam
+- id_siswa
+- tanggal_pinjam
+- tanggal_kembali
+
+4. detail_peminjaman
+- id_detial
+- id_peminjaman
+- id_buku
+- jumlah
+
+5. admin
+- id_admin
+- username
+- password
