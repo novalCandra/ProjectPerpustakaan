@@ -45,7 +45,7 @@ while ($row = mysqli_fetch_assoc($sql)) {
                         <a class="nav-link" href="buku.php">Details Buku</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Details Peminjaman</a>
+                        <a class="nav-link" href="details_peminjaman.php">Details Peminjaman</a>
                     </li>
                 </ul>
             </div>

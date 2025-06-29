@@ -4,7 +4,7 @@ require_once '../../koneksi.php';
 $data = "SELECT * FROM buku";
 $sql = mysqli_query($db_perpustakaan, $data);
 
-// $bukuDipilih = isset($_GET['judul']) ? $_GET['judul'] : '';
+$bukuDipilih = $_GET['judul'] ?? "";
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +40,7 @@ $sql = mysqli_query($db_perpustakaan, $data);
                         <a class="nav-link" href="buku.php">Details Buku</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Details Peminjaman</a>
+                        <a class="nav-link" href="details_peminjaman.php">Details Peminjaman</a>
                     </li>
                 </ul>
             </div>
@@ -63,21 +63,38 @@ $sql = mysqli_query($db_perpustakaan, $data);
                     </figcaption>
                 </figure>
 
-
                 <form role="form" action="../../controller/prosess_form_peminjaman.php" method="post">
-                    <!-- Inputan buku dipilih -->
-                    <!-- <div class="mb-3">
-                        <label for="buku" class="form-label">Buku yang di pilih</label>
-                        <input type="text" class="form-control" name="buku" value=" " readonly>
-                    </div> -->
-                    <!-- end Inputan buku di pilih -->
-
                     <!-- Inputan name -->
                     <div class="mb-3">
                         <label for="form_name" class="form-label">Nama</label>
-                        <input type="text" class="form-control" name="nama">
+                        <!-- <input type="text" class="form-control" name="nama"> -->
+                        <select name="id_siswa" class="form-control">
+                            <?php
+                            require_once '../../koneksi.php';
+                            // Menampilkan Query
+                            $result = mysqli_query($db_perpustakaan, "SELECT * FROM siswa");
+
+                            while ($siswa = mysqli_fetch_assoc($result)) {
+                                echo "<option value='{$siswa['id_siswa']}'>{$siswa['nama']}</option>";
+                            }
+                            ?>
+                        </select>
                     </div>
                     <!-- end Inputan name -->
+
+
+                    <!-- Inputan buku -->
+                     <div class="mb-3">
+                        <label for="buku" class="form-label">Buku</label>
+                        <select class="form-control" name="id_buku">
+                            <?php while($buku = mysqli_fetch_assoc($sql)) : ?>
+                                <option value="<?= $buku['judul']?>" <?= $buku['judul'] == $bukuDipilih ? 'selected' : '' ?>>
+                                    <?php echo $buku['judul']; ?>
+                                </option>
+                            <?php endwhile; ?>
+                        </select>
+                     </div>
+                    <!-- End Inputan Buku -->
 
                     <!-- Inputan date starh -->
                     <div class="mb-3">
