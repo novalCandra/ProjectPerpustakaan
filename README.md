@@ -12,5 +12,5 @@
 
 
 ## Goasl Three Todays
-- [|] Pembuatan siswa
-- [] Details Peminjaman Siswa
+- [X] Details Peminjaman Siswa
+- [X] fitur hapus details Peminjaman
